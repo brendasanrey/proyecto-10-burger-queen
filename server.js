@@ -1,11 +1,14 @@
 const { ApolloServer, gql } = require("apollo-server");
+const mongoose = require("mongoose");
+require("dotenv").config({ path: "variables.env" });
 
-const lista = [
-  { tarea: "leer", persona: "Adri" },
-  { tarea: "comer", persona: "Copelia" },
-  { tarea: "caminar", persona: "Rocio" },
-  { tarea: "saltar", persona: "Linda" }
-];
+mongoose
+  .connect(
+    process.env.MONGO_URI,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("Base de datos conectada"))
+  .catch(error => console.log(error));
 
 const typeDefs = gql`
   type Lista {
@@ -16,28 +19,9 @@ const typeDefs = gql`
   type Query {
     getLista: [Lista]
   }
-
-  type Mutation {
-    addLista(tarea: String, persona: String): Lista
-  }
 `;
 
-const resolvers = {
-  Query: {
-    getLista: () => {
-      return lista;
-    }
-  },
-  Mutation: {
-    addLista: (_, args) => {
-      const nuevalista = { tarea: args.tarea, persona: args.persona };
-      lista.push(nuevalista);
-      return nuevalista;
-    }
-  }
-};
-
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs });
 
 server.listen().then(({ url }) => {
   console.log("Servidor activo ", url);
