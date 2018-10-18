@@ -4,6 +4,14 @@ module.exports = {
     getDrinkList: async (_, args, { Drink }) => {
       const drinks = await Drink.find({}).sort({ name: "desc" });
       return drinks;
+    },
+    getFoodList: async (_, args, { Food }) => {
+      const foodies = await Food.find({}).sort({ name: "desc" });
+      return foodies;
+    },
+    getOrderList: async (_, args, { Order }) => {
+      const orders = await Order.find({}).sort({ client: "desc" });
+      return orders;
     }
   },
   Mutation: {
