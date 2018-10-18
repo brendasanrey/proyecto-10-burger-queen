@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "variables.env" });
 const fs = require("fs");
@@ -8,6 +8,7 @@ const Drink = require("./models/Drink");
 const Food = require("./models/Food");
 const Order = require("./models/Order");
 const User = require("./models/User");
+const resolvers = require("./resolvers");
 
 const filePath = path.join(__dirname, "typeDefs.gql");
 const typeDefs = fs.readFileSync(filePath, "utf-8");
@@ -22,6 +23,7 @@ mongoose
 
 const server = new ApolloServer({
   typeDefs,
+  resolvers,
   context: {
     Drink,
     Food,
@@ -30,6 +32,6 @@ const server = new ApolloServer({
   }
 });
 
-server.listen().then(({ url }) => {
+server.listen(4000).then(({ url }) => {
   console.log("Servidor activo ", url);
 });

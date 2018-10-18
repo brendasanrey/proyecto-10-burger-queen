@@ -21,8 +21,32 @@ type Order {
   client: String!
   employee: User!
 }
+
 type User {
   _id: ID
   username: String! @unique
   password: String!
+}
+
+type Query {
+  getUser: User
+}
+
+type Mutation {
+  addDrink(name: String!, price: Int!): Drink!
+  addFood(
+    name: String!
+    price: Int!
+    shift: Boolean!
+    extra: [String]
+    side: [String]
+  ): Food!
+  addOrder(
+    food: ID!
+    drink: ID!
+    total: Int!
+    client: String!
+    employee: ID!
+  ): Order!
+  signupUser(username: String!, password: String!): User!
 }
