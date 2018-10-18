@@ -30,6 +30,8 @@ type User {
 
 type Query {
   getUser: User
+  getDrinkList: [Drink]!
+  getFoodList: [Food]!
 }
 
 type Mutation {
