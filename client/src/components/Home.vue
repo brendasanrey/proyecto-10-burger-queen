@@ -5,13 +5,12 @@
         <img src="https://preview.ibb.co/kXjHgL/logo.jpg" class="img-fluid img-burger">
       </div>
       <div class="col-md-6 offset-md-3 col-12 text-center mt-3">
-        <button class="btn btn-danger">
-          <i class="fas fa-sign-in-alt"></i> Ingresar</button>
+        <a class="btn btn-danger" href="/signin">
+          <i class="fas fa-sign-in-alt"></i> Ingresar</a>
       </div>
-
     </div>
   </div>
-</template>
+</template>                                      
 
 <script>
 export default {
