@@ -1,6 +1,15 @@
 <template>
-  <div class="container mt-3">
-    <h1>Home</h1>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-12 text-center">
+        <img src="https://preview.ibb.co/kXjHgL/logo.jpg" class="img-fluid img-burger">
+      </div>
+      <div class="col-md-6 offset-md-3 col-12 text-center mt-3">
+        <button class="btn btn-danger">
+          <i class="fas fa-sign-in-alt"></i> Ingresar</button>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -9,3 +18,10 @@ export default {
   name: "home"
 };
 </script>
+
+<style>
+.img-burger {
+  height: 400px;
+}
+</style>
+
