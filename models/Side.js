@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const FoodSchema = new mongoose.Schema({
+const SideSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -8,11 +8,7 @@ const FoodSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true
-  },
-  shift: {
-    type: Boolean,
-    required: true
   }
 });
 
-module.exports = mongoose.model("Food", FoodSchema);
+module.exports = mongoose.model("Side", SideSchema);

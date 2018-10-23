@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Home from "./components/Home.vue";
 import Signin from "./components/Signin.vue";
 import Order from "./components/Order.vue";
-
+import Hola from "./components/Hola.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -24,6 +24,11 @@ export default new Router({
       path: "/order",
       name: "order",
       component: Order
+    },
+    {
+      path: "/hola",
+      name: "hola",
+      component: Hola
     }
   ]
 });

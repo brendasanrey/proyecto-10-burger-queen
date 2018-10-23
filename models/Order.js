@@ -6,6 +6,16 @@ const OrderSchema = new mongoose.Schema({
     required: true,
     ref: "Food"
   },
+  extra: {
+    type: [mongoose.Schema.Types.ObjectId],
+    required: true,
+    ref: "Extra"
+  },
+  side: {
+    type: [mongoose.Schema.Types.ObjectId],
+    required: true,
+    ref: "Side"
+  },
   drink: {
     type: [mongoose.Schema.Types.ObjectId],
     required: true,
