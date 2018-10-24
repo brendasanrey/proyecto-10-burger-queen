@@ -57,11 +57,12 @@ type Mutation {
   addOrder(
     food: ID!
     drink: ID!
-    extra: ID
-    side: ID
+    extra: [ID]
+    side: [ID]
     total: Int!
     client: String!
     employee: ID!
   ): Order!
-  signupUser(username: String!, password: String!): User!
+  signupUser(username: String!, password: String!): User
+  signinUser(username: String!, password: String!): User
 }
