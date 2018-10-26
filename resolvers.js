@@ -1,8 +1,15 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const createToken = (user, secret, expiresIn) => {
+  const { username, password } = user;
+  return jwt.sign({ username, password }, secret, { expiresIn });
+};
 
 module.exports = {
   Query: {
     getUser: () => null,
+    getCurrentUser: async (_, args, { User }) => {},
     getDrinkList: async (_, args, { Drink }) => {
       const drinks = await Drink.find({}).sort({ name: "desc" });
       return drinks;
@@ -26,32 +33,38 @@ module.exports = {
   },
   Mutation: {
     signupUser: async (_, { username, password }, { User }) => {
-      const user = await User.findOne({ username });
+      // Verifica si ya existe un usuario con ese nombre
+      const user = await User.findOne({
+        username
+      });
       if (user) {
-        throw new Error("User already exists");
+        throw new Error("El usuario proporcionado ya existe");
       }
+      // Crea un nuevo usuario y le pasa los valores de los argumentos recibidos
       const newUser = await new User({
         username,
         password
       }).save();
-      return newUser;
+      return { token: createToken(newUser, process.env.SECRET, "1hr") };
     },
     signinUser: async (_, { username, password }, { User }) => {
       const user = await User.findOne({ username });
-      if (user) {
-        throw new Error("User not found");
+      if (!user) {
+        throw new Error("Usuario no encontrado");
       }
+      // Comparar la contraseña ingresada con la almacenada en la base
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (!isValidPassword) {
-        throw new Error("Invalid Password");
+        throw new Error("Contraseña incorrecta");
       }
+      return { token: createToken(user, process.env.SECRET, "1hr") };
     },
-    addDrink: async (_, { name, price }, { Drink }) => {
+    addDrink: async (_, { name, price, imageURL }, { Drink }) => {
       const drink = await Drink.findOne({ name });
       if (drink) {
         throw new Error("Drink already exists");
       }
-      const newDrink = await new Drink({ name, price }).save();
+      const newDrink = await new Drink({ name, price, imageURL }).save();
       return newDrink;
     },
     addExtra: async (_, { name, price }, { Extra }) => {
@@ -70,7 +83,7 @@ module.exports = {
       const newSide = await new Side({ name, price }).save();
       return newSide;
     },
-    addFood: async (_, { name, price, shift }, { Food }) => {
+    addFood: async (_, { name, price, shift, imageURL }, { Food }) => {
       const food = await Food.findOne({ name });
       if (food) {
         throw new Error("Food already exists");
@@ -78,13 +91,14 @@ module.exports = {
       const newFood = await new Food({
         name,
         price,
-        shift
+        shift,
+        imageURL
       }).save();
       return newFood;
     },
     addOrder: async (
       _,
-      { food, drink, extra, side, total, client, employee },
+      { food, drink, extra, side, total, client },
       { Order }
     ) => {
       const newOrder = await new Order({
@@ -93,8 +107,7 @@ module.exports = {
         extra,
         side,
         total,
-        client,
-        employee
+        client
       }).save();
       return newOrder;
     }

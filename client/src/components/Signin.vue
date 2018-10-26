@@ -4,10 +4,12 @@
       <div class="mt-4">
         <img class="img-fluid" src="https://preview.ibb.co/kXjHgL/logo.jpg" id="icon" width="200" />
       </div>
-      <form>
-        <input type="text" id="login" name="login" placeholder="Nombre de usuario">
-        <input type="text" id="password" name="login" placeholder="Contraseña">
-        <input type="submit" class="px-5 btn btn-danger my-3" value="Ingresar">
+      <form @submit.prevent="handleSigninUser">
+        <input type="text" placeholder="Nombre de usuario" v-model="username">
+        <input type="password" placeholder="Contraseña" v-model="password">
+        <button class="px-5 btn btn-danger my-3">
+          <a>Ingresar</a>
+        </button>
       </form>
       <div id="formFooter">
         <a class="underlineHover" href="/">
@@ -21,7 +23,21 @@
 
 <script>
 export default {
-  name: "Signin"
+  name: "Signin",
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    handleSigninUser() {
+      this.$store.dispatch("signinUser", {
+        username: this.username,
+        password: this.password
+      });
+    }
+  }
 };
 </script>
 
@@ -69,7 +85,8 @@ input[type="reset"]:active {
   transform: scale(0.95);
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;

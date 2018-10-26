@@ -1,0 +1,15 @@
+{
+  "name": "vueBurgerQueen",
+  "type": "static",
+  "static": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "alias": "vueBurgerQueen",
+  "files": ["dist"]
+}
