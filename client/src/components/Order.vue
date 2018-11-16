@@ -4,7 +4,6 @@
       <a class="navbar-brand">
         <img src="https://image.ibb.co/cuWfzf/favicon.png" width="50" height="50" alt="">
       </a>
-      <span class="text-white ml-3 title"> Burger Queen</span>
     </nav>
     <div class="mt-5 container-fluid">
       <div class="row mt-5">
@@ -40,7 +39,7 @@
                 <img class="card-img-top " :src="drinks.imageURL " alt="Card image cap " height="100px ">
                 <div class="card-body text-center ">
                   <h5 class="title-food text-center ">{{drinks.name}}</h5>
-                  <a class="btn btn-danger btn-food px-2 ">$ {{drinks.price}}</a>
+                  <a class="btn btn-danger btn-food px-2 text-white">$ {{drinks.price}}</a>
                   <button class="btn btn-warning ml-1 btn-food " v-on:click="addToOrderList(drinks)">
                     <i class="fas fa-plus-circle "></i>
                   </button>
@@ -52,7 +51,7 @@
                 <img class="card-img-top " :src="extras.imageURL " alt="Card image cap " height="100px ">
                 <div class="card-body text-center ">
                   <h5 class="title-food text-center ">{{extras.name}}</h5>
-                  <a class="btn btn-danger btn-food px-2 ">$ {{extras.price}}</a>
+                  <a class="btn btn-danger btn-food px-2 text-white">$ {{extras.price}}</a>
                   <button class="btn btn-warning ml-1 btn-food " v-on:click="addToOrderList(extras)">
                     <i class="fas fa-plus-circle "></i>
                   </button>
@@ -67,10 +66,10 @@
             <div class="col-12 text-center mt-3 ">
               <div class="row">
                 <div class="col-6 text-left">
-                  <h2>Orden</h2>
+                  <h2>Nueva orden</h2>
                 </div>
-                <div class="col-6 text-right">
-                  <button class="btn btn-primary" @click=sendOrder>Enviar</button>
+                <div class="col-6 text-right" v-if="this.orderList.length > 0">
+                  <button class="btn btn-primary" @click=sendOrder> Enviar <i class="fas fa-share text-white"></i></button>
                 </div>
               </div>
             </div>
@@ -167,14 +166,15 @@ export default {
 
 <style>
 .list {
-  height: 600px;
+  height: 650px;
   border: 2px solid white;
   margin-right: 1em;
   margin-left: 1em;
   background-color: rgba(243, 243, 243, 0.7);
 }
 .title-food {
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: bold;
 }
 .btn-food {
   padding-top: 1px;
@@ -188,13 +188,14 @@ export default {
 }
 
 .bg-color {
-  background-color: #595a51 !important;
+  background-color: rgba(243, 243, 243, 0.7) !important;
 }
 
 body {
-  background-image: url("https://preview.ibb.co/kQYFX0/hotdogs.png");
+  background-image: url("https://preview.ibb.co/mpHkH0/bg1.png");
   background-repeat: repeat;
   font-family: "Lato", sans-serif;
 }
 </style>
+
 
