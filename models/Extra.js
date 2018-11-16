@@ -8,6 +8,10 @@ const ExtraSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true
+  },
+  imageURL: {
+    type: String,
+    required: true
   }
 });
 

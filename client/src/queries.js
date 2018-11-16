@@ -32,3 +32,14 @@ export const GET_DRINK_LIST = gql`
     }
   }
 `;
+
+export const GET_EXTRA_LIST = gql`
+  query {
+    getExtraList {
+      _id
+      name
+      price
+      imageURL
+    }
+  }
+`;

@@ -1,5 +1,5 @@
 {
-  "name": "vueBurgerQueen",
+  "name": "BurgerQueenOrders",
   "type": "static",
   "static": {
     "public": "dist",
@@ -10,6 +10,6 @@
       }
     ]
   },
-  "alias": "vueBurgerQueen",
+  "alias": "BurgerQueenOrders",
   "files": ["dist"]
 }

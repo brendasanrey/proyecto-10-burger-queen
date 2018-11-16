@@ -9,13 +9,14 @@ type Food {
 type Extra {
   _id: ID
   name: String!
-  price: String!
+  price: Int!
+  imageURL: String!
 }
 
 type Side {
   _id: ID
   name: String!
-  price: String!
+  price: Int!
 }
 
 type Drink {
