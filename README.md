@@ -1,5 +1,11 @@
 # Burger Queen
 
+Sistema para tomar pedidos en una cadena de comida rápida.
+
+![2](https://user-images.githubusercontent.com/28116629/49233250-35180280-f3bb-11e8-9615-633d741792b5.png)
+
+Desarrollado para [Laboratoria](http://laboratoria.la)
+
 ## Preámbulo
 
 Nos acaban de enviar un correo con una solicitud para un nuevo proyecto. Hay un
