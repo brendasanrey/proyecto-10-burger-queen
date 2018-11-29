@@ -2,7 +2,6 @@ type Food {
   _id: ID
   name: String!
   price: Int!
-  shift: Boolean!
   imageURL: String!
 }
 
@@ -11,12 +10,6 @@ type Extra {
   name: String!
   price: Int!
   imageURL: String!
-}
-
-type Side {
-  _id: ID
-  name: String!
-  price: Int!
 }
 
 type Drink {
@@ -28,49 +21,21 @@ type Drink {
 
 type Order {
   _id: ID
-  food: [Food]!
-  drink: [Drink]!
-  extra: [Extra]
-  side: [Side]
+  products: [String]!
   total: Int!
   client: String!
-  # employee: User!
-}
-
-type User {
-  _id: ID
-  username: String! @unique
-  password: String!
-}
-
-type Token {
-  token: String!
 }
 
 type Query {
-  getUser: User
-  getCurrentUser: User
   getDrinkList: [Drink]!
   getFoodList: [Food]!
   getExtraList: [Extra]!
-  getSideList: [Side]!
   getOrderList: [Order]!
 }
 
 type Mutation {
   addDrink(name: String!, price: Int!, imageURL: String!): Drink!
-  addFood(name: String!, price: Int!, shift: Boolean!, imageURL: String!): Food!
+  addFood(name: String!, price: Int!, imageURL: String!): Food!
   addExtra(name: String!, price: Int!): Extra!
-  addSide(name: String!, price: Int!): Side!
-  addOrder(
-    food: ID!
-    drink: ID!
-    extra: [ID]
-    side: [ID]
-    total: Int!
-    client: String!
-    employee: ID!
-  ): Order!
-  signupUser(username: String!, password: String!): Token
-  signinUser(username: String!, password: String!): Token
+  addOrder(products: [String]!, total: Int!, client: String!): Order!
 }

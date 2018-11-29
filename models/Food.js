@@ -9,10 +9,6 @@ const FoodSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  shift: {
-    type: Boolean,
-    required: true
-  },
   imageURL: {
     type: String,
     required: true

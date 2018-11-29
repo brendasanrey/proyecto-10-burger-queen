@@ -1,22 +1,11 @@
 import { gql } from "apollo-boost";
 
-// Mutaciones para usuarios
-
-export const SIGNIN_USER = gql`
-  mutation($username: String!, $password: String!) {
-    signinUser(username: $username, password: $password) {
-      token
-    }
-  }
-`;
-
 export const GET_FOOD_LIST = gql`
   query {
     getFoodList {
       _id
       name
       price
-      shift
       imageURL
     }
   }
@@ -40,6 +29,17 @@ export const GET_EXTRA_LIST = gql`
       name
       price
       imageURL
+    }
+  }
+`;
+
+export const ADD_ORDER = gql`
+  mutation($products: [String]!, $total: Int!, $client: String!) {
+    addOrder(products: $products, total: $total, client: $client) {
+      _id
+      products
+      total
+      client
     }
   }
 `;
